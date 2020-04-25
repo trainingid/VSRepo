@@ -2,14 +2,14 @@ pipeline {
    agent any 
          stages {
 
-             stage ('Code Check Out')
+           /*  stage ('Code Check Out')
              {
                  steps
                  {
                     bat "git clone https://github.com/trainingid/VSRepo.git"
                  }
              }
-
+*/
 
              stage ('Terraform Path')
              {
