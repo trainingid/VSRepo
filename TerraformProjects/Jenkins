@@ -1,0 +1,47 @@
+pipeline {
+   agent any 
+         stages {
+
+             stage ('Code Check Out')
+             {
+                 steps
+                 {
+                    bat "git clone https://github.com/trainingid/VSRepo.git"
+                 }
+             }
+
+
+             stage ('Terraform Path')
+             {
+                 steps
+                 {
+                 script{
+                     def tfHome = tool name: 'Terraform'
+                     env.PATH = "${tfHome};${env.PATH}"
+                 }
+                 bat "terraform --version"
+                 }
+             }
+             
+              stage ('Terraform Init') 
+              {
+                 
+                steps
+                    {
+                     
+                       bat "terraform init"
+                    }
+              }
+              
+              stage ('Terraform Plan') 
+              {
+                 
+                steps
+                    {
+                     
+                       bat "terraform plan"
+                    }
+              }
+              
+         }
+}
